@@ -9,9 +9,9 @@ import configureStore from './Store/configureStore';
 
 const store = configureStore();
 
-//SUBSCRIBE the state change
+
 store.subscribe(() => {
-  console.log(store.getState());
+  // console.log('data',store.getState());
 });
 
 

@@ -1,9 +1,11 @@
-import { createStore, combineReducers, applyMiddleware, } from "redux";
+import {createStore,combineReducers,applyMiddleware} from 'redux';
+import personReducers from '../Reducer/personReducer';
+
 import thunk from 'redux-thunk'
 
 const configureStore = () => {
     const state = createStore(combineReducers({
-      count:0
+      users:personReducers,
     }),applyMiddleware(thunk))
     return state
 }
