@@ -1,34 +1,43 @@
-import React,{useEffect,useDispatch} from 'react';
+import React,{useEffect,useState} from 'react';
+import { useSelector,useDispatch } from 'react-redux';
+import { startGetusers } from '../Action/userAction';
+
 
 const PersonDetails =(props)=>{
-
-    // const dispatch= useDispatch()
+    const persons = useSelector((state)=>{
+        // console.log(state);
+        return state.users
+    })
+    const dispatch= useDispatch()   
 
     useEffect(()=>{
-        // dispatch()
+        dispatch(startGetusers())
     },[])
 
     return(
-        <div>
-            <table class="table">
+          
+        <div>         
+           {/* {console.log('in HTML page',persons)} */}
+            <table className="table">
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>Address</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="row">sdfshgs</td>
-                        <td>sdagfsdgsdf</td>
-                        <td>sdfgfsdghsdfh</td>
-                    </tr>
-                    <tr>
-                    <td scope="row">sdfshgs</td>
-                        <td>sdagfsdgsdf</td>
-                        <td>sdfgfsdghsdfh</td>
-                    </tr>
+                    {persons.map(person =>{
+                        return (
+                            <tr key={person.id}>
+                                <td scope="row">{person.id}</td>
+                                <td>{person.firstName}</td>
+                                <td>{person.lastName}</td>
+                            </tr>
+                        )
+                    })}
+                    
+                   
                 </tbody>
             </table>
             
